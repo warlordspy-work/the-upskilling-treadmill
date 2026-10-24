@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevUpskill - Learner Dashboard &amp; Simulations</title>
+<!-- Google Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#c4e7ff",
+            "error": "#ffb4ab",
+            "primary-fixed": "#b2f746",
+            "surface-container-high": "#252a39",
+            "outline": "#8c947c",
+            "on-primary": "#213600",
+            "on-tertiary-fixed": "#000767",
+            "on-background": "#dee2f6",
+            "on-surface-variant": "#c2cab0",
+            "on-surface": "#dee2f6",
+            "primary": "#ccff80",
+            "on-secondary": "#00354a",
+            "surface-bright": "#343948",
+            "primary-fixed-dim": "#98da27",
+            "tertiary-container": "#cccfff",
+            "error-container": "#93000a",
+            "on-primary-container": "#416400",
+            "tertiary": "#eeedff",
+            "inverse-on-surface": "#2b303f",
+            "secondary": "#7bd0ff",
+            "surface": "#0e1321",
+            "on-tertiary-container": "#444fb7",
+            "surface-container-lowest": "#090e1c",
+            "primary-container": "#a3e635",
+            "surface-tint": "#98da27",
+            "on-secondary-container": "#00374d",
+            "on-error-container": "#ffdad6",
+            "secondary-fixed-dim": "#7bd0ff",
+            "tertiary-fixed-dim": "#bdc2ff",
+            "background": "#0e1321",
+            "on-secondary-fixed-variant": "#004c69",
+            "on-primary-fixed-variant": "#334f00",
+            "surface-container-highest": "#303444",
+            "surface-container-low": "#161b2a",
+            "secondary-container": "#00a6e0",
+            "surface-dim": "#0e1321",
+            "tertiary-fixed": "#e0e0ff",
+            "inverse-primary": "#446900",
+            "surface-container": "#1a1f2e",
+            "on-tertiary": "#131e8c",
+            "on-primary-fixed": "#121f00",
+            "inverse-surface": "#dee2f6",
+            "surface-variant": "#303444",
+            "on-error": "#690005",
+            "outline-variant": "#424936",
+            "on-secondary-fixed": "#001e2c",
+            "on-tertiary-fixed-variant": "#2f3aa3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "margin": "2rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Inter"],
+            "headline-lg": ["Inter"],
+            "code-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "headline-xl": ["Inter"],
+            "title-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "label-code": ["JetBrains Mono"],
+            "code-lg": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "code-md": ["13px", { "lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0", "fontWeight": "400" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "title-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-code": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }],
+            "code-lg": ["15px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-outlined[data-weight="fill"] {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Instrument pulse badge */
+    @keyframes subtle-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.92); }
+    }
+    .beacon-pulse {
+      animation: subtle-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    /* Subtle neon halo */
+    .glow-lime {
+      box-shadow: 0 0 16px -4px rgba(163, 230, 53, 0.18);
+    }
+    .glow-lime-btn:hover {
+      box-shadow: 0 0 12px rgba(163, 230, 53, 0.28);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen antialiased flex flex-col font-body-md text-body-md selection:bg-primary-container selection:text-on-primary">
+<!-- ========================================================================= -->
+<!-- SHARED COMPONENT 1: TopNavBar                                             -->
+<!-- ========================================================================= -->
+<header class="flex justify-between items-center w-full px-margin h-14 border-b border-outline-variant dark:border-outline-variant bg-surface dark:bg-surface sticky top-0 z-50">
+<!-- Brand & Left Navigation Links -->
+<div class="flex items-center gap-space-lg">
+<a class="text-title-sm font-title-sm font-bold tracking-tight text-primary dark:text-primary flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-primary text-title-sm" data-weight="fill">terminal</span>
+<span>DevUpskill</span>
+</a>
+<!-- Desktop Search Bar -->
+<div class="relative hidden lg:flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-on-surface-variant text-body-sm">search</span>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg pl-8 pr-12 py-1 text-code-md font-code-md text-on-surface placeholder:text-on-surface-variant/60 focus:border-primary-container focus:outline-none focus:ring-1 focus:ring-primary-container w-64 lg:w-80 transition-colors" placeholder="Search modules, simulations, CLI args..." type="text"/>
+<div class="absolute right-2 flex items-center pointer-events-none">
+<kbd class="px-1.5 py-0.5 bg-surface-container-high border border-outline-variant rounded text-[10px] font-label-code text-on-surface-variant">Ctrl+K</kbd>
+</div>
+</div>
+<!-- Navigation Links: Dashboard is ACTIVE -->
+<nav class="hidden md:flex items-center gap-space-xs h-14">
+<a class="text-primary dark:text-primary border-b-2 border-primary dark:border-primary font-code-md text-code-md py-4 px-space-sm flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-code-md" data-weight="fill">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface font-code-md text-code-md py-4 px-space-sm transition-colors flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-code-md">code_blocks</span>
+<span>Sandbox</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface font-code-md text-code-md py-4 px-space-sm transition-colors flex items-center gap-1.5" href="#">
+<span class="material-symbols-outlined text-code-md">bolt</span>
+<span>Microlearning</span>
+</a>
+</nav>
+</div>
+<!-- Trailing Icon Actions & Streak & Profile -->
+<div class="flex items-center gap-space-md">
+<!-- Streak Badge -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container border border-outline-variant text-code-md font-code-md text-primary">
+<span class="material-symbols-outlined text-secondary-container text-body-md" data-weight="fill">local_fire_department</span>
+<span class="font-code-md font-medium text-code-md text-on-surface">Streak 14</span>
+</div>
+<!-- Trailing Action Icons -->
+<div class="flex items-center gap-1">
+<button aria-label="Notifications" class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded transition-colors relative">
+<span class="material-symbols-outlined text-body-lg">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-primary-container rounded-full"></span>
+</button>
+<button aria-label="Settings" class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded transition-colors">
+<span class="material-symbols-outlined text-body-lg">settings</span>
+</button>
+</div>
+<div class="h-4 w-px bg-outline-variant"></div>
+<!-- Developer Profile Avatar with Online Ping -->
+<div class="flex items-center gap-2">
+<div class="relative">
+<img alt="Developer user profile avatar with online status badge" class="w-7 h-7 rounded-full object-cover border border-outline-variant" data-alt="A clean modern digital portrait of a focused software engineer in a dark terminal environment, moody ambient navy and lime lighting reflections, minimalist developer workstation background with high aesthetic fidelity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk5chUGuu63VIOesWtKegYH2gfXMtI0YPJWyO_UC0neib24tFuWG_Nt7UM33TjYtKviuA-ILpaPOqcSv5syZNzz1QhNIy_OqZYeo4JXg-sFu1457VZ8NkJ649uWbWsi5Y3nuiIiXjTNJsuTMP5ljeryVJrg1e2_gVUHVkJmjxJZZ3Ye2FCY_JrDKjKoykmerFnuM__etUnD0YtlYkelrOuXRc_jNMJd5q0uS6MD4wvk796YuW_01-qlQ"/>
+<span class="absolute bottom-0 right-0 w-2 h-2 bg-primary-container rounded-full ring-2 ring-surface"></span>
+</div>
+<span class="hidden sm:inline font-code-md text-code-md text-on-surface font-medium">alx.dev</span>
+</div>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- VIEW SWITCHER BAR (Dual-Purpose Workflows)                                -->
+<!-- ========================================================================= -->
+<section class="w-full bg-surface-container-lowest border-b border-outline-variant px-margin py-2">
+<div class="max-w-[1400px] mx-auto flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center p-0.5 bg-surface-container border border-outline-variant rounded">
+<button class="px-3 py-1 text-code-md font-code-md rounded bg-surface text-primary border border-outline-variant shadow-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+          Overview &amp; Simulations
+        </button>
+<button class="px-3 py-1 text-code-md font-code-md text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-sm">splitscreen</span>
+          Split-Pane Sandbox
+        </button>
+<button class="px-3 py-1 text-code-md font-code-md text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-sm">smartphone</span>
+          Mobile Microlearning Preview
+        </button>
+</div>
+<!-- Right Instrument Telemetry Pill -->
+<div class="hidden sm:flex items-center gap-space-md text-label-code font-label-code text-on-surface-variant">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container beacon-pulse"></span>
+          GCP CLUSTER: us-central1-c (ACTIVE)
+        </span>
+<span class="text-outline">|</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-label-code">memory</span>
+          RUN POD MEM: 412Mi / 1024Mi
+        </span>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- MAIN WORKSPACE CANVAS                                                     -->
+<!-- ========================================================================= -->
+<main class="flex-1 w-full max-w-[1400px] mx-auto px-margin py-space-xl flex flex-col gap-space-xl">
+<!-- HERO: "Continue Learning" Elevated Session Banner -->
+<section class="relative bg-surface-container-low border border-outline-variant rounded-xl p-space-lg overflow-hidden group hover:border-outline transition-colors">
+<!-- Ambient technical backdrop grid -->
+<div class="absolute inset-0 bg-[radial-gradient(#1E293B_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-space-lg">
+<div class="flex-1 flex flex-col gap-space-sm">
+<!-- Status Line & Breadcrumb -->
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-2 py-0.5 rounded text-label-code font-label-code bg-surface border border-primary-container/40 text-primary flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container beacon-pulse"></span>
+              ACTIVE SIMULATION
+            </span>
+<span class="text-label-code font-label-code text-on-surface-variant">GCP_ARCH_804 • TRACK: GEN-AI SYS</span>
+</div>
+<!-- Module Headline -->
+<h1 class="text-headline-md font-headline-md text-on-surface font-semibold tracking-tight">
+            Architecting Resilient Multi-Agent LLM Pipelines on GCP &amp; Kubernetes
+          </h1>
+<p class="text-body-md font-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-body-sm text-primary">play_arrow</span>
+<span>Module 4 of 6: Handling Graceful Fallbacks &amp; Vector Cache</span>
+</p>
+<!-- Precision Progress Indicator -->
+<div class="mt-2 flex flex-col gap-1.5 max-w-xl">
+<div class="flex justify-between items-center text-label-code font-label-code text-on-surface-variant">
+<span class="text-on-surface font-medium">Pipeline Deployment Progress</span>
+<span class="text-primary font-semibold">68% • 4/6 Modules complete</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full transition-all duration-500 glow-lime" style="width: 68%;"></div>
+</div>
+</div>
+<!-- Instrument Telemetry Tags -->
+<div class="flex flex-wrap items-center gap-space-sm pt-2">
+<span class="px-2 py-1 rounded bg-surface border border-outline-variant text-label-code font-label-code text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-sm text-outline">schedule</span>
+              Est. remaining: 22m
+            </span>
+<span class="px-2 py-1 rounded bg-surface border border-outline-variant text-label-code font-label-code text-on-surface-variant flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-sm text-primary">military_tech</span>
+              +450 XP on completion
+            </span>
+<span class="px-2 py-1 rounded bg-surface border border-outline-variant text-label-code font-label-code text-primary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-sm">terminal</span>
+              Terminal: Connected (tty-04)
+            </span>
+</div>
+</div>
+<!-- Action CTAs -->
+<div class="flex sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end gap-space-sm min-w-[210px]">
+<button class="px-5 py-3 rounded-lg bg-primary-container text-on-primary font-code-md text-code-md font-bold tracking-tight hover:bg-primary-fixed-dim transition-all duration-150 active:scale-[0.99] glow-lime-btn flex items-center justify-center gap-2">
+<span>Resume Simulation</span>
+<span class="material-symbols-outlined text-code-lg">arrow_forward</span>
+</button>
+<button class="px-4 py-2.5 rounded-lg bg-surface border border-outline-variant text-on-surface font-code-md text-code-md hover:border-outline hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-body-sm text-on-surface-variant">difference</span>
+<span>Review Last Diff</span>
+</button>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- CONTENT LAYOUT: Simulations Catalog (8 Cols) & Live Telemetry (4 Cols)    -->
+<!-- ========================================================================= -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- LEFT: Simulations Catalog & Track Briefs (12 on mob, 8 on lg) -->
+<section class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Filter Pills Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-1 border-b border-outline-variant">
+<div>
+<h2 class="text-title-sm font-title-sm text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-title-sm">integration_instructions</span>
+              Corporate Simulation Briefs
+            </h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Real production failures, architectural upgrades, and cloud tasks.</p>
+</div>
+<!-- Quick Filter Tabs -->
+<div class="flex items-center gap-1 overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+<button class="px-2.5 py-1 rounded text-label-code font-label-code bg-surface-container-high text-primary border border-primary-container/40 font-semibold whitespace-nowrap">
+              All Tracks
+            </button>
+<button class="px-2.5 py-1 rounded text-label-code font-label-code text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">
+              Cloud Arch
+            </button>
+<button class="px-2.5 py-1 rounded text-label-code font-label-code text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">
+              Generative AI
+            </button>
+<button class="px-2.5 py-1 rounded text-label-code font-label-code text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">
+              DevOps &amp; SRE
+            </button>
+<button class="px-2.5 py-1 rounded text-label-code font-label-code text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors whitespace-nowrap">
+              Security
+            </button>
+</div>
+</div>
+<!-- 6 Simulation Cards Grid (2-col on desktop) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- CARD 1 -->
+<div class="group relative bg-surface border border-outline-variant rounded-xl p-space-md flex flex-col justify-between hover:border-primary-container hover:glow-lime transition-all duration-200">
+<div class="flex flex-col gap-space-xs">
+<div class="flex justify-between items-start gap-2">
+<span class="px-2 py-0.5 rounded text-label-code font-label-code bg-surface-container-high text-secondary border border-outline-variant">
+                  Intermediate
+                </span>
+<span class="text-label-code font-label-code text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-label-code">schedule</span>
+                  25 mins
+                </span>
+</div>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors mt-1">
+                Deploy Next.js 14 on GCP Cloud Run with Terraform
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                Configure auto-scaling serverless containers, secret manager IAM bindings, and Cloud CDN caching policies.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">Terraform</span>
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">GCP</span>
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">Next.js</span>
+</div>
+<button class="text-label-code font-label-code text-primary hover:underline flex items-center gap-0.5">
+                Ready to Launch
+                <span class="material-symbols-outlined text-label-code">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- CARD 2 -->
+<div class="group relative bg-surface border border-outline-variant rounded-xl p-space-md flex flex-col justify-between hover:border-primary-container hover:glow-lime transition-all duration-200">
+<div class="flex flex-col gap-space-xs">
+<div class="flex justify-between items-start gap-2">
+<span class="px-2 py-0.5 rounded text-label-code font-label-code bg-surface-container-high text-error border border-outline-variant">
+                  Advanced
+                </span>
+<span class="text-label-code font-label-code text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-label-code">schedule</span>
+                  35 mins
+                </span>
+</div>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors mt-1">
+                Build Resilient Redis Caching for Semantic Search
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                Mitigate cache stampede using probabilistic early expiration algorithms with high-throughput embedding lookups.
+              </p>
+</div>
+<!-- In Progress Bar -->
+<div class="mt-space-sm">
+<div class="flex justify-between text-label-code font-label-code text-on-surface-variant mb-1">
+<span>In Progress</span>
+<span class="text-primary">40%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 40%;"></div>
+</div>
+</div>
+<div class="mt-space-sm pt-space-xs border-t border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">Redis</span>
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">Python</span>
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">Vector DB</span>
+</div>
+<button class="text-label-code font-label-code text-primary font-semibold flex items-center gap-0.5">
+                Resume
+                <span class="material-symbols-outlined text-label-code">play_circle</span>
+</button>
+</div>
+</div>
+<!-- CARD 3 -->
+<div class="group relative bg-surface border border-outline-variant rounded-xl p-space-md flex flex-col justify-between hover:border-primary-container hover:glow-lime transition-all duration-200">
+<div class="flex flex-col gap-space-xs">
+<div class="flex justify-between items-start gap-2">
+<span class="px-2 py-0.5 rounded text-label-code font-label-code bg-surface-container-high text-error border border-outline-variant">
+                  Advanced
+                </span>
+<span class="text-label-code font-label-code text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-label-code">schedule</span>
+                  30 mins
+                </span>
+</div>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors mt-1">
+                Zero-Downtime PostgreSQL Schema Migration with PgBouncer
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                Execute expand-and-contract table refactorings during peak 25k req/s traffic without lock exhaustion.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">PostgreSQL</span>
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">SQL</span>
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">Docker</span>
+</div>
+<button class="text-label-code font-label-code text-on-surface-variant group-hover:text-primary transition-colors flex items-center gap-0.5">
+                Ready to Launch
+                <span class="material-symbols-outlined text-label-code">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- CARD 4 -->
+<div class="group relative bg-surface border border-outline-variant rounded-xl p-space-md flex flex-col justify-between hover:border-primary-container hover:glow-lime transition-all duration-200">
+<div class="flex flex-col gap-space-xs">
+<div class="flex justify-between items-start gap-2">
+<span class="px-2 py-0.5 rounded text-label-code font-label-code bg-surface-container-high text-primary border border-outline-variant">
+                  Beginner
+                </span>
+<span class="text-label-code font-label-code text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-label-code">schedule</span>
+                  15 mins
+                </span>
+</div>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors mt-1">
+                Implement Rate Limiting &amp; Token Buckets in Go
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                Safeguard distributed APIs against noisy neighbors using lock-free synchronization primitives.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">Go</span>
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">Security</span>
+</div>
+<div class="flex items-center gap-1 text-label-code font-label-code text-primary font-medium">
+<span class="material-symbols-outlined text-code-md text-primary" data-weight="fill">check_circle</span>
+<span>Completed</span>
+</div>
+</div>
+</div>
+<!-- CARD 5 -->
+<div class="group relative bg-surface border border-outline-variant rounded-xl p-space-md flex flex-col justify-between hover:border-primary-container hover:glow-lime transition-all duration-200">
+<div class="flex flex-col gap-space-xs">
+<div class="flex justify-between items-start gap-2">
+<span class="px-2 py-0.5 rounded text-label-code font-label-code bg-surface-container-high text-secondary border border-outline-variant">
+                  Intermediate
+                </span>
+<span class="text-label-code font-label-code text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-label-code">schedule</span>
+                  45 mins
+                </span>
+</div>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors mt-1">
+                Fine-tune Small Language Models on Synthetic Telemetry
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                Train a 3B parameter model on LoRA adapters to parse proprietary JSON logs into structured crash summaries.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">PyTorch</span>
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">LLM</span>
+</div>
+<button class="text-label-code font-label-code text-on-surface-variant group-hover:text-primary transition-colors flex items-center gap-0.5">
+                Ready to Launch
+                <span class="material-symbols-outlined text-label-code">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- CARD 6 -->
+<div class="group relative bg-surface border border-outline-variant rounded-xl p-space-md flex flex-col justify-between hover:border-primary-container hover:glow-lime transition-all duration-200">
+<div class="flex flex-col gap-space-xs">
+<div class="flex justify-between items-start gap-2">
+<span class="px-2 py-0.5 rounded text-label-code font-label-code bg-surface-container-high text-error border border-outline-variant">
+                  Advanced
+                </span>
+<span class="px-2 py-0.5 rounded text-[10px] font-label-code bg-primary-container/20 text-primary border border-primary-container/30 uppercase">
+                  New
+                </span>
+</div>
+<h3 class="text-body-lg font-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors mt-1">
+                Automated Incident Remediation with eBPF and Prometheus
+              </h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant line-clamp-2">
+                Kernel-level socket tracing to identify hung TCP handshakes and dispatch ephemeral reboot sidecars.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs border-t border-outline-variant/60 flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">eBPF</span>
+<span class="px-1.5 py-0.5 bg-surface-container text-on-surface-variant text-label-code font-label-code rounded border border-outline-variant">K8s</span>
+</div>
+<button class="text-label-code font-label-code text-primary font-semibold flex items-center gap-0.5">
+                Launch Brief
+                <span class="material-symbols-outlined text-label-code">rocket_launch</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT: Developer Velocity, Telemetry & Ergonomics (4 Cols) -->
+<aside class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Live Velocity & Focus Gauge Card -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-space-md flex flex-col gap-space-md">
+<div class="flex justify-between items-center pb-2 border-b border-outline-variant">
+<span class="text-label-code font-label-code text-on-surface-variant uppercase tracking-wider flex items-center gap-1.5">
+<span class="material-symbols-outlined text-body-sm text-primary">speed</span>
+              Cognitive Velocity
+            </span>
+<span class="px-1.5 py-0.5 rounded bg-primary-container/10 border border-primary-container/30 text-[10px] font-label-code text-primary">
+              OPTIMAL FLOW
+            </span>
+</div>
+<!-- Focus Metric Display -->
+<div class="flex items-baseline justify-between">
+<div>
+<div class="text-headline-lg font-headline-lg text-on-surface font-bold leading-none">98<span class="text-primary text-headline-md">%</span></div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">Weekly Deep-Work Precision</p>
+</div>
+<div class="text-right">
+<span class="text-code-md font-code-md text-secondary">+12.4%</span>
+<p class="text-label-code font-label-code text-on-surface-variant">vs last cycle</p>
+</div>
+</div>
+<!-- Micro-calendar 14-Day Streak Dots Grid -->
+<div class="flex flex-col gap-1.5 pt-1">
+<div class="flex justify-between text-label-code font-label-code text-on-surface-variant">
+<span>Streak Cadence</span>
+<span class="text-on-surface font-code-md">14 Days Clean</span>
+</div>
+<div class="grid grid-cols-7 gap-1.5 p-2 bg-surface rounded border border-outline-variant">
+<!-- Day dots with lime active markers -->
+<div class="flex flex-col items-center gap-1">
+<span class="text-[9px] font-label-code text-on-surface-variant">M</span>
+<span class="w-4 h-4 rounded-sm bg-primary-container" title="3 Modules Completed"></span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-[9px] font-label-code text-on-surface-variant">T</span>
+<span class="w-4 h-4 rounded-sm bg-primary-container" title="2 Modules Completed"></span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-[9px] font-label-code text-on-surface-variant">W</span>
+<span class="w-4 h-4 rounded-sm bg-primary-container" title="4 Modules Completed"></span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-[9px] font-label-code text-on-surface-variant">T</span>
+<span class="w-4 h-4 rounded-sm bg-primary-container" title="1 Simulation Completed"></span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-[9px] font-label-code text-on-surface-variant">F</span>
+<span class="w-4 h-4 rounded-sm bg-primary-container" title="2 Modules Completed"></span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-[9px] font-label-code text-on-surface-variant">S</span>
+<span class="w-4 h-4 rounded-sm bg-primary-container" title="5 Modules Completed"></span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-[9px] font-label-code text-on-surface-variant">S</span>
+<span class="w-4 h-4 rounded-sm bg-primary-container beacon-pulse" title="Today Active"></span>
+</div>
+</div>
+</div>
+<!-- Ergonomic Fatigue Guard -->
+<div class="p-2.5 bg-surface rounded border border-outline-variant flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-body-lg mt-0.5">verified_user</span>
+<div>
+<p class="text-body-sm font-body-sm text-on-surface font-medium">Screen Fatigue Guard: Active</p>
+<p class="text-[11px] font-body-sm text-on-surface-variant leading-relaxed">
+                Terminal theme calibrated for low blue-light emission. 45 min interval reached; take a 60-second horizon break.
+              </p>
+</div>
+</div>
+</div>
+<!-- Terminal Diagnostic & Session Quick-Connect -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-1">
+<span class="text-label-code font-label-code text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-body-sm">terminal</span>
+              LIVE INSTANCE SHELL
+            </span>
+<span class="text-[10px] font-label-code text-primary bg-primary-container/10 px-1.5 py-0.5 rounded border border-primary-container/30">
+              SSH 2.4.1
+            </span>
+</div>
+<!-- Monospace Console Snippet -->
+<div class="bg-surface-container-lowest p-2.5 rounded border border-outline-variant font-code-md text-code-md text-on-surface flex flex-col gap-1 overflow-x-auto">
+<div class="text-on-surface-variant/60 text-[11px]">// GCP Sandbox Session: gke-sandbox-prod-us-0</div>
+<div class="text-primary text-[12px]">$ dev-cli connect --session=gcp-rag-fallbacks</div>
+<div class="text-secondary text-[12px]">[ok] Verified mTLS certificate hash</div>
+<div class="text-on-surface text-[12px]">[ok] Vector cache seeded (14,200 embeddings)</div>
+<div class="text-primary-fixed-dim text-[12px] blink-cursor flex items-center gap-1">
+<span>Ready for test execution:</span>
+<span class="inline-block w-2 h-3.5 bg-primary-container animate-pulse"></span>
+</div>
+</div>
+<button class="w-full py-2 bg-surface border border-outline-variant text-code-md font-code-md text-on-surface hover:text-primary hover:border-primary-container rounded transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-body-sm">open_in_new</span>
+<span>Detach into Split-Pane Sandbox</span>
+</button>
+</div>
+<!-- Mentor Verification Badge -->
+<div class="p-space-md rounded-xl bg-surface border border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container flex items-center justify-center border border-outline-variant text-primary">
+<span class="material-symbols-outlined text-headline-md">psychology</span>
+</div>
+<div>
+<div class="text-body-sm font-body-sm font-semibold text-on-surface">AI Code Reviewer: Enabled</div>
+<div class="text-label-code font-label-code text-on-surface-variant">Realtime AST linting &amp; cost evaluation</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- ========================================================================= -->
+<!-- SHARED COMPONENT 2: Footer                                                -->
+<!-- ========================================================================= -->
+<footer class="w-full py-space-lg px-margin border-t border-outline-variant dark:border-outline-variant flex flex-col md:flex-row justify-between items-center gap-space-md bg-surface-container-lowest dark:bg-surface-container-lowest mt-auto">
+<!-- Brand Copyright -->
+<div class="flex items-center gap-2">
+<span class="text-body-sm font-code-md font-semibold text-on-surface dark:text-on-surface">
+        © 2025 DevUpskill. Terminal-grade mastery for modern engineers.
+      </span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-wrap items-center gap-space-md">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-code-md text-label-code hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+        Documentation
+      </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-code-md text-label-code hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+        Sandbox Environment
+      </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-code-md text-label-code hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+        Curriculum Index
+      </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-code-md text-label-code hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+        Telemetry Status
+      </a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-code-md text-label-code hover:text-primary dark:hover:text-primary transition-colors duration-150" href="#">
+        Privacy
+      </a>
+</nav>
+</footer>
+</body></html>

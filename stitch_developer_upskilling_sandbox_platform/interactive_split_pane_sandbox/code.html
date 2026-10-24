@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevUpskill - Interactive Split-Pane Sandbox</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Verbatim Tailwind Config Injection -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#c4e7ff",
+            "error": "#ffb4ab",
+            "primary-fixed": "#b2f746",
+            "surface-container-high": "#252a39",
+            "outline": "#8c947c",
+            "on-primary": "#213600",
+            "on-tertiary-fixed": "#000767",
+            "on-background": "#dee2f6",
+            "on-surface-variant": "#c2cab0",
+            "on-surface": "#dee2f6",
+            "primary": "#ccff80",
+            "on-secondary": "#00354a",
+            "surface-bright": "#343948",
+            "primary-fixed-dim": "#98da27",
+            "tertiary-container": "#cccfff",
+            "error-container": "#93000a",
+            "on-primary-container": "#416400",
+            "tertiary": "#eeedff",
+            "inverse-on-surface": "#2b303f",
+            "secondary": "#7bd0ff",
+            "surface": "#0e1321",
+            "on-tertiary-container": "#444fb7",
+            "surface-container-lowest": "#090e1c",
+            "primary-container": "#a3e635",
+            "surface-tint": "#98da27",
+            "on-secondary-container": "#00374d",
+            "on-error-container": "#ffdad6",
+            "secondary-fixed-dim": "#7bd0ff",
+            "tertiary-fixed-dim": "#bdc2ff",
+            "background": "#0e1321",
+            "on-secondary-fixed-variant": "#004c69",
+            "on-primary-fixed-variant": "#334f00",
+            "surface-container-highest": "#303444",
+            "surface-container-low": "#161b2a",
+            "secondary-container": "#00a6e0",
+            "surface-dim": "#0e1321",
+            "tertiary-fixed": "#e0e0ff",
+            "inverse-primary": "#446900",
+            "surface-container": "#1a1f2e",
+            "on-tertiary": "#131e8c",
+            "on-primary-fixed": "#121f00",
+            "inverse-surface": "#dee2f6",
+            "surface-variant": "#303444",
+            "on-error": "#690005",
+            "outline-variant": "#424936",
+            "on-secondary-fixed": "#001e2c",
+            "on-tertiary-fixed-variant": "#2f3aa3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "margin": "2rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Inter"],
+            "headline-lg": ["Inter"],
+            "code-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "headline-xl": ["Inter"],
+            "title-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "label-code": ["JetBrains Mono"],
+            "code-lg": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "code-md": ["13px", { "lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0", "fontWeight": "400" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "title-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-code": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }],
+            "code-lg": ["15px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    /* Custom Scrollbar for IDE & Terminal */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090e1c;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #303444;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #424936;
+    }
+    .neon-halo {
+      box-shadow: 0 0 16px -4px rgba(163, 230, 53, 0.25);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-md text-body-md h-screen flex flex-col overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TOP NAVIGATION BAR (Derived from Shared Components JSON with Task Context) -->
+<header class="flex justify-between items-center w-full px-margin h-14 border-b border-outline-variant bg-surface sticky top-0 z-50 shrink-0 select-none">
+<!-- Left Section: Logo & Breadcrumbs -->
+<div class="flex items-center gap-space-md">
+<div class="text-title-sm font-title-sm font-bold tracking-tight text-primary flex items-center gap-space-xs cursor-pointer">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="terminal">terminal</span>
+<span>DevUpskill</span>
+</div>
+<div class="hidden lg:flex items-center gap-2 text-outline-variant font-code-md text-code-md">
+<span>/</span>
+<span class="text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors">Corporate Briefs</span>
+<span>/</span>
+<span class="text-on-surface-variant hover:text-on-surface cursor-pointer transition-colors">Deploy Next.js on GCP</span>
+<span>/</span>
+<span class="text-on-surface font-medium flex items-center gap-1.5 bg-surface-container-low px-2 py-0.5 rounded border border-outline-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+          Exercise 2: Cloud Run Service Manifest
+        </span>
+</div>
+</div>
+<!-- Center Section: Interactive Step Progress Tracker -->
+<div class="hidden md:flex items-center gap-space-md bg-surface-container-lowest px-4 py-1.5 rounded-full border border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="font-label-code text-label-code text-on-surface-variant uppercase tracking-wider">Step</span>
+<span class="font-code-md text-code-md font-semibold text-primary">2</span>
+<span class="font-code-md text-code-md text-outline">of 5</span>
+</div>
+<div class="w-28 h-1.5 bg-surface-container-high rounded-full overflow-hidden flex">
+<div class="w-2/5 h-full bg-primary-container rounded-full neon-halo"></div>
+</div>
+<span class="font-label-code text-label-code text-primary font-medium">40% Complete</span>
+</div>
+<!-- Right Actions: Streak, Actions, and User Profile -->
+<div class="flex items-center gap-space-sm">
+<div class="hidden sm:flex items-center gap-1 px-2.5 py-1 bg-surface-container-high border border-outline-variant rounded font-code-md text-code-md text-on-surface">
+<span class="material-symbols-outlined text-primary-container text-base" data-icon="local_fire_department" data-weight="fill" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-semibold text-primary">Streak 14</span>
+</div>
+<button class="hidden sm:flex items-center gap-1 px-2.5 py-1 text-on-surface-variant hover:text-on-surface hover:border-outline-variant border border-transparent rounded font-code-md text-label-code transition-all" title="Reset current sandbox changes">
+<span class="material-symbols-outlined text-base" data-icon="restart_alt">restart_alt</span>
+<span>Reset</span>
+</button>
+<button class="hidden sm:flex items-center gap-1 px-2.5 py-1 text-on-surface-variant hover:text-on-surface hover:border-outline-variant border border-transparent rounded font-code-md text-label-code transition-all" title="Save progress draft">
+<span class="material-symbols-outlined text-base" data-icon="save">save</span>
+<span>Save Draft</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-150" title="Notifications">
+<span class="material-symbols-outlined text-xl" data-icon="notifications">notifications</span>
+</button>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors duration-150" title="Settings">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+</button>
+<!-- Profile Avatar -->
+<div class="relative ml-1 cursor-pointer">
+<img class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="Close up portrait photograph of an experienced developer with glasses working late in a dark room illuminated by neon green code reflections on monitors, high technical cinematic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiPS0SlM-qQPZz3iOlPaoY50FwfaNihUZ3KP9uAlYVkA1-8kCPy2SPNvbOG_dnZ4jQXim7lf2c06U3uT380WWalYJyrzlS120ykD4eUGzoAkGtpcITXqaRO6IcZQDAVLQL9Pz9VhqzMk7_mNEsPcZVVliBybGKpFZhJ4U6jNYzGw1NqJJo4BVQuQucPIP25qRkoNvcw2-_zNcrk5MZlcRQf6OahEGsZDeKXBSGFNFYPJXfouinu2842Q"/>
+<span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-primary-container border-2 border-surface"></span>
+</div>
+</div>
+</header>
+<!-- MAIN SPLIT SCREEN CANVAS (50/50 Dual Pane) -->
+<main class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+<!-- LEFT PANE: INSTRUCTIONAL & MARKDOWN VIEW -->
+<section class="w-full md:w-1/2 flex flex-col bg-surface border-r border-outline-variant overflow-y-auto">
+<!-- Instructional Header Banner -->
+<div class="p-space-lg border-b border-outline-variant bg-surface-container-lowest/50">
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded border border-primary-container/40 bg-surface-container-lowest text-primary font-label-code text-label-code flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-ping"></span>
+            Task: Containerize &amp; Configure Port Mapping
+          </span>
+<span class="text-on-surface-variant font-label-code text-label-code">Est: 10 mins</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">
+          Cloud Run Service Spec: Networking &amp; Concurrency
+        </h1>
+</div>
+<!-- Markdown Structured Body -->
+<div class="p-space-lg space-y-space-lg text-on-surface">
+<!-- Context Summary Box -->
+<div class="p-4 bg-surface-container-low border border-outline-variant rounded-lg space-y-2">
+<div class="flex items-center gap-2 text-primary font-code-md text-code-md font-semibold">
+<span class="material-symbols-outlined text-base" data-icon="info">info</span>
+            Architecture Objective
+          </div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            By default, Cloud Run passes incoming ingress traffic on the container's designated listener port. Mismatching this manifest declaration causes critical <span class="text-error font-code-md text-code-md">502 Bad Gateway</span> cold starts and instant container starvation.
+          </p>
+</div>
+<!-- Step-by-Step Instructions -->
+<div class="space-y-4">
+<h2 class="font-title-sm text-title-sm text-on-surface font-semibold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base" data-icon="checklist">checklist</span>
+            Implementation Steps
+          </h2>
+<div class="space-y-3">
+<!-- Step Item 1 -->
+<div class="flex items-start gap-3 p-3 bg-surface-container rounded border border-outline-variant/60">
+<span class="w-6 h-6 rounded bg-primary-container text-on-primary-container font-code-md text-code-md font-bold flex items-center justify-center shrink-0 mt-0.5">1</span>
+<div class="space-y-1 flex-1">
+<p class="font-body-md text-body-md font-medium text-on-surface">Specify the Ingress Container Port</p>
+<p class="text-body-sm text-on-surface-variant">Update the specification in <code class="font-code-md text-label-code bg-surface-container-lowest px-1.5 py-0.5 rounded border border-outline-variant text-primary">service.yaml</code> under the <code class="font-code-md text-label-code text-secondary">ports</code> block to expose port <code class="font-code-md text-label-code text-primary">8080</code>.</p>
+<div class="pt-1 flex items-center gap-2">
+<div class="bg-surface-container-lowest px-2 py-1 rounded font-code-md text-label-code text-on-surface border border-outline-variant flex items-center justify-between w-full max-w-xs">
+<code>containerPort: 8080</code>
+<button class="text-outline hover:text-primary transition-colors" title="Copy snippet">
+<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Step Item 2 -->
+<div class="flex items-start gap-3 p-3 bg-surface-container rounded border border-outline-variant/60">
+<span class="w-6 h-6 rounded bg-surface-container-high text-on-surface font-code-md text-code-md font-bold flex items-center justify-center shrink-0 mt-0.5">2</span>
+<div class="space-y-1 flex-1">
+<p class="font-body-md text-body-md font-medium text-on-surface">Tune Container Memory &amp; Concurrency</p>
+<p class="text-body-sm text-on-surface-variant">Prevent out-of-memory container crashes under sudden traffic spikes. Allocate <code class="font-code-md text-label-code text-primary">512Mi</code> memory limit and explicitly lock concurrency to <code class="font-code-md text-label-code text-primary">80</code> requests per instance.</p>
+</div>
+</div>
+<!-- Step Item 3 -->
+<div class="flex items-start gap-3 p-3 bg-surface-container rounded border border-outline-variant/60">
+<span class="w-6 h-6 rounded bg-surface-container-high text-on-surface font-code-md text-code-md font-bold flex items-center justify-center shrink-0 mt-0.5">3</span>
+<div class="space-y-1 flex-1">
+<p class="font-body-md text-body-md font-medium text-on-surface">Simulate Deployment &amp; Verify Telemetry</p>
+<p class="text-body-sm text-on-surface-variant">Click the <strong class="text-primary font-semibold">Run Code ▶</strong> button in the right-hand panel to compile the manifest and pass the 3 health probe assertions.</p>
+<div class="pt-1 flex items-center gap-2">
+<div class="bg-surface-container-lowest px-2 py-1 rounded font-code-md text-label-code text-on-surface border border-outline-variant flex items-center justify-between w-full">
+<span class="truncate">gcloud run deploy microlearning-srv --image=gcr.io/...</span>
+<button class="text-outline hover:text-primary transition-colors ml-2" title="Copy command">
+<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Collapsible Hint Accordion -->
+<details class="group bg-surface-container-low border border-outline-variant rounded-lg overflow-hidden transition-all duration-200">
+<summary class="flex items-center justify-between p-3.5 cursor-pointer list-none select-none hover:bg-surface-container-high transition-colors">
+<span class="flex items-center gap-2 font-code-md text-code-md text-primary font-medium">
+<span class="material-symbols-outlined text-base" data-icon="lightbulb">lightbulb</span>
+              Need a hint? Check the service.yaml memory allocation syntax
+            </span>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200 group-open:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="p-3.5 pt-0 text-body-sm text-on-surface-variant border-t border-outline-variant/40 mt-2 space-y-2">
+<p>Ensure resources are bounded under the <code class="font-code-md text-label-code text-secondary">limits</code> block inside your container spec:</p>
+<pre class="bg-surface-container-lowest p-2.5 rounded font-code-md text-label-code text-on-surface overflow-x-auto border border-outline-variant">resources:
+  limits:
+    memory: 512Mi
+    cpu: "1000m"</pre>
+</div>
+</details>
+<!-- Knowledge Check / Takeaway Banner -->
+<div class="p-4 rounded-lg bg-surface-container-lowest border-l-4 border-l-primary-container border-y border-r border-outline-variant flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5" data-icon="verified">verified</span>
+<div>
+<h4 class="font-code-md text-code-md font-semibold text-primary">Key Takeaway</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Cloud Run automatically scales to zero when no active requests are pending unless <code class="font-code-md text-label-code text-on-surface">min-instances</code> is configured to eliminate cold start penalties.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- RIGHT PANE: CODE EDITOR & RUNTIME ENVIRONMENT -->
+<section class="w-full md:w-1/2 flex flex-col bg-surface-container-lowest h-full overflow-hidden">
+<!-- Editor Top Toolbar & File Tabs -->
+<div class="flex items-center justify-between border-b border-outline-variant bg-surface px-3 py-1.5 shrink-0 select-none">
+<!-- Left: Linux/macOS Window Controls & Tabs -->
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-1.5 pr-2 border-r border-outline-variant">
+<span class="w-2.5 h-2.5 rounded-full bg-[#f87171] inline-block opacity-80 hover:opacity-100 cursor-pointer"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#fbbf24] inline-block opacity-80 hover:opacity-100 cursor-pointer"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#4ade80] inline-block opacity-80 hover:opacity-100 cursor-pointer"></span>
+</div>
+<!-- File Tabs -->
+<div class="flex items-center gap-1">
+<button class="flex items-center gap-1.5 px-3 py-1 bg-surface-container-lowest text-on-surface font-code-md text-code-md rounded-t border-t border-x border-outline-variant -mb-2 z-10">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span>service.yaml</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1 text-on-surface-variant hover:text-on-surface font-code-md text-code-md rounded transition-colors">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="description">description</span>
+<span>Dockerfile</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1 text-on-surface-variant hover:text-on-surface font-code-md text-code-md rounded transition-colors">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="description">description</span>
+<span>cloudbuild.yaml</span>
+</button>
+</div>
+</div>
+<!-- Right Toolbar & Action Button -->
+<div class="flex items-center gap-2">
+<button class="hidden lg:flex items-center gap-1 px-2 py-1 text-on-surface-variant hover:text-on-surface border border-outline-variant rounded font-code-md text-label-code" title="Format indentation">
+<span class="material-symbols-outlined text-sm" data-icon="code">code</span>
+<span>Format</span>
+</button>
+<div class="hidden xl:flex items-center gap-1.5 px-2.5 py-1 bg-surface-container text-on-surface-variant border border-outline-variant rounded font-code-md text-label-code">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span>GCP-us-central1 (Simulated)</span>
+</div>
+<!-- PRIMARY RUN BUTTON -->
+<button class="bg-primary-container text-on-primary-container font-code-md text-code-md font-bold px-4 py-1.5 rounded hover:bg-[#84cc16] active:scale-[0.99] transition-all flex items-center gap-1.5 neon-halo cursor-pointer">
+<span class="material-symbols-outlined text-base font-bold" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span>Run Code</span>
+</button>
+</div>
+</div>
+<!-- Code Editor Canvas (Monospace with realistic syntax highlighting) -->
+<div class="flex-1 overflow-auto bg-surface-container-lowest font-code-md text-code-md flex select-text">
+<!-- Line Numbers Column -->
+<div class="py-3 px-2 text-right text-outline select-none border-r border-outline-variant/40 bg-surface-container-lowest/80 font-code-md text-code-md space-y-0 leading-5 min-w-[2.75rem]">
+<div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
+<div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div>
+<div>21</div><div>22</div><div>23</div><div>24</div>
+</div>
+<!-- Code Content -->
+<div class="p-3 py-3 leading-5 font-code-md text-code-md text-on-surface flex-1 overflow-x-auto whitespace-pre">
+<span class="text-outline font-italic"># Cloud Run Service Definition - Exercise 2</span>
+<span class="text-secondary font-semibold">apiVersion</span>: <span class="text-on-surface">serving.knative.dev/v1</span>
+<span class="text-secondary font-semibold">kind</span>: <span class="text-on-surface">Service</span>
+<span class="text-secondary font-semibold">metadata</span>:
+  <span class="text-secondary font-semibold">name</span>: <span class="text-primary-container">microlearning-srv</span>
+<span class="text-secondary font-semibold">annotations</span>:
+    <span class="text-secondary font-semibold">run.googleapis.com/ingress</span>: <span class="text-on-surface">all</span>
+<span class="text-secondary font-semibold">spec</span>:
+  <span class="text-secondary font-semibold">template</span>:
+    <span class="text-secondary font-semibold">metadata</span>:
+      <span class="text-secondary font-semibold">annotations</span>:
+        <span class="text-secondary font-semibold">autoscaling.knative.dev/maxScale</span>: <span class="text-tertiary font-semibold">'10'</span>
+<span class="text-secondary font-semibold">spec</span>:
+      <span class="text-secondary font-semibold">containerConcurrency</span>: <span class="text-primary font-semibold">80</span>
+<span class="text-secondary font-semibold">containers</span>:
+      - <span class="text-secondary font-semibold">image</span>: <span class="text-tertiary">gcr.io/devupskill/nextjs:v1.4</span>
+<span class="text-secondary font-semibold">ports</span>:
+        - <span class="text-secondary font-semibold">containerPort</span>: <span class="text-primary-container font-bold bg-primary-container/20 px-1 rounded border border-primary-container/40">8080</span>
+<span class="text-secondary font-semibold">resources</span>:
+          <span class="text-secondary font-semibold">limits</span>:
+            <span class="text-secondary font-semibold">memory</span>: <span class="text-primary font-semibold">512Mi</span>
+<span class="text-secondary font-semibold">cpu</span>: <span class="text-tertiary font-semibold">"1000m"</span>
+<span class="text-secondary font-semibold">env</span>:
+        - <span class="text-secondary font-semibold">name</span>: <span class="text-on-surface">NODE_ENV</span>
+<span class="text-secondary font-semibold">value</span>: <span class="text-tertiary">production</span>
+        - <span class="text-secondary font-semibold">name</span>: <span class="text-on-surface">PORT</span>
+<span class="text-secondary font-semibold">value</span>: <span class="text-tertiary font-semibold">"8080"</span></div>
+</div>
+<!-- BOTTOM SPLIT TERMINAL / OUTPUT CONSOLE -->
+<div class="h-48 border-t border-outline-variant bg-surface flex flex-col shrink-0">
+<!-- Terminal Header Tabs -->
+<div class="flex items-center justify-between px-3 py-1 border-b border-outline-variant bg-surface-container select-none">
+<div class="flex items-center gap-2">
+<button class="px-2.5 py-1 text-primary border-b-2 border-primary font-code-md text-label-code flex items-center gap-1.5 font-semibold">
+<span class="material-symbols-outlined text-xs" data-icon="terminal">terminal</span>
+<span>Terminal Output</span>
+</button>
+<button class="px-2.5 py-1 text-on-surface-variant hover:text-on-surface font-code-md text-label-code flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-xs" data-icon="difference">difference</span>
+<span>Telemetry Diff</span>
+</button>
+<button class="px-2.5 py-1 text-on-surface-variant hover:text-on-surface font-code-md text-label-code flex items-center gap-1.5 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span>Linter (0 errors)</span>
+</button>
+</div>
+<div class="flex items-center gap-2 text-outline font-code-md text-label-code">
+<span class="hover:text-on-surface cursor-pointer">Clear</span>
+<span>•</span>
+<span class="material-symbols-outlined text-sm hover:text-on-surface cursor-pointer" data-icon="open_in_full">open_in_full</span>
+</div>
+</div>
+<!-- Terminal Logs Stream -->
+<div class="p-3 overflow-y-auto font-code-md text-code-md space-y-1.5 flex-1 select-text">
+<div class="text-on-surface-variant flex items-center gap-2">
+<span class="text-primary font-semibold">$</span>
+<span>gcloud run deploy microlearning-srv --region=us-central1 --quiet</span>
+</div>
+<div class="text-outline">
+            [i] Parsing manifest target service.yaml ... Validated Knative schema 1.0.
+          </div>
+<div class="text-secondary flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+<span>[+] Container image verified: gcr.io/devupskill/nextjs:v1.4</span>
+</div>
+<div class="text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-xs text-primary" data-icon="link">link</span>
+<span>[✓] Service URL: <a class="text-secondary underline hover:text-primary transition-colors" href="#">https://microlearning-srv-prod.a.run.app</a></span>
+</div>
+<div class="pt-1 flex items-center gap-2 font-semibold">
+<span class="px-2 py-0.5 rounded bg-primary-container/20 border border-primary-container text-primary font-label-code text-label-code">
+              Status: 200 OK
+            </span>
+<span class="text-primary-container font-code-md text-code-md flex items-center gap-1">
+<span class="material-symbols-outlined text-base" data-icon="verified">verified</span>
+              All assertions passed (3/3) ✓
+            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- FLOATING AI TUTOR WIDGET (Bottom Right Corner) -->
+<div class="absolute bottom-4 right-4 z-40 flex flex-col items-end pointer-events-none">
+<!-- Expanded Tutor Card Mockup -->
+<div class="pointer-events-auto w-96 mb-3 bg-surface-container border border-outline-variant rounded-xl shadow-2xl overflow-hidden backdrop-blur-md flex flex-col border-primary-container/30 transition-all duration-300">
+<!-- Header -->
+<div class="px-3.5 py-2.5 bg-surface-container-high border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-primary-container/20 border border-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="smart_toy">smart_toy</span>
+</div>
+<div>
+<h3 class="font-code-md text-code-md font-semibold text-on-surface">DevAI Copilot</h3>
+<p class="font-label-code text-label-code text-outline-variant">In-Context Tutor • Active</p>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<button class="text-on-surface-variant hover:text-primary p-1 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="minimize">minimize</span>
+</button>
+<button class="text-on-surface-variant hover:text-error p-1 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+</button>
+</div>
+</div>
+<!-- Chat Conversation Body -->
+<div class="p-3.5 space-y-3 max-h-72 overflow-y-auto font-body-sm text-body-sm">
+<!-- User Bubble -->
+<div class="flex justify-end">
+<div class="bg-surface-container-highest text-on-surface px-3 py-2 rounded-lg rounded-tr-none max-w-[85%] border border-outline-variant/40">
+              Why did my previous container fail health checks on port 3000?
+            </div>
+</div>
+<!-- AI Response Bubble -->
+<div class="flex gap-2 items-start">
+<div class="w-5 h-5 rounded-full bg-primary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-on-primary-container text-xs font-bold" data-icon="bolt">bolt</span>
+</div>
+<div class="bg-surface-container-lowest text-on-surface-variant p-3 rounded-lg rounded-tl-none border border-outline-variant space-y-1.5">
+<p class="text-on-surface">Cloud Run defaults to listening on <strong class="text-primary font-code-md text-label-code">PORT 8080</strong>.</p>
+<p>You mapped 3000 in your Dockerfile without setting the PORT environment variable. Updating line 18 to <code class="font-code-md text-label-code text-primary bg-surface px-1 py-0.5 rounded border border-outline-variant">containerPort: 8080</code> resolves this instantly.</p>
+</div>
+</div>
+<!-- Quick Suggestion Pills -->
+<div class="pt-1 flex flex-wrap gap-1.5">
+<button class="px-2 py-0.5 rounded-full bg-surface-container-lowest border border-outline-variant hover:border-primary font-code-md text-label-code text-on-surface-variant hover:text-primary transition-colors">
+              Explain Line 18
+            </button>
+<button class="px-2 py-0.5 rounded-full bg-surface-container-lowest border border-outline-variant hover:border-primary font-code-md text-label-code text-on-surface-variant hover:text-primary transition-colors">
+              Show Best Practices
+            </button>
+<button class="px-2 py-0.5 rounded-full bg-surface-container-lowest border border-outline-variant hover:border-primary font-code-md text-label-code text-on-surface-variant hover:text-primary transition-colors">
+              Test Edge Cases
+            </button>
+</div>
+</div>
+<!-- Input Bar -->
+<div class="p-2.5 bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex items-center gap-1.5 bg-surface rounded border border-outline-variant focus-within:border-primary-container px-2.5 py-1.5 transition-colors">
+<input class="bg-transparent border-none text-on-surface placeholder:text-outline text-body-sm focus:ring-0 p-0 w-full outline-none" placeholder="Ask AI Tutor a question..." type="text"/>
+<button class="text-primary hover:text-primary-container p-0.5 transition-colors" title="Send query">
+<span class="material-symbols-outlined text-lg" data-icon="arrow_upward">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Floating Trigger Button -->
+<button class="pointer-events-auto w-12 h-12 rounded-full bg-surface-container border-2 border-primary-container text-primary flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all neon-halo group" title="DevAI Tutor">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform" data-icon="forum">forum</span>
+</button>
+</div>
+</main>
+<!-- SHARED FOOTER COMPONENT (Strictly adheres to JSON Tokens & Structure) -->
+<footer class="w-full py-space-lg px-margin border-t border-outline-variant bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center gap-space-md shrink-0 select-none z-30">
+<div class="flex items-center gap-space-md">
+<span class="text-body-sm font-code-md font-semibold text-on-surface">© 2025 DevUpskill. Terminal-grade mastery for modern engineers.</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-md">
+<a class="text-on-surface-variant font-code-md text-label-code hover:text-primary transition-colors duration-150 active:opacity-80" href="#">Documentation</a>
+<a class="text-primary font-code-md text-label-code hover:text-primary transition-colors duration-150 active:opacity-80" href="#">Sandbox Environment</a>
+<a class="text-on-surface-variant font-code-md text-label-code hover:text-primary transition-colors duration-150 active:opacity-80" href="#">Curriculum Index</a>
+<a class="text-on-surface-variant font-code-md text-label-code hover:text-primary transition-colors duration-150 active:opacity-80" href="#">Telemetry Status</a>
+<a class="text-on-surface-variant font-code-md text-label-code hover:text-primary transition-colors duration-150 active:opacity-80" href="#">Privacy</a>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DevUpskill - Mobile Microlearning</title>
+<!-- Google Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary-fixed": "#c4e7ff",
+            "error": "#ffb4ab",
+            "primary-fixed": "#b2f746",
+            "surface-container-high": "#252a39",
+            "outline": "#8c947c",
+            "on-primary": "#213600",
+            "on-tertiary-fixed": "#000767",
+            "on-background": "#dee2f6",
+            "on-surface-variant": "#c2cab0",
+            "on-surface": "#dee2f6",
+            "primary": "#ccff80",
+            "on-secondary": "#00354a",
+            "surface-bright": "#343948",
+            "primary-fixed-dim": "#98da27",
+            "tertiary-container": "#cccfff",
+            "error-container": "#93000a",
+            "on-primary-container": "#416400",
+            "tertiary": "#eeedff",
+            "inverse-on-surface": "#2b303f",
+            "secondary": "#7bd0ff",
+            "surface": "#0e1321",
+            "on-tertiary-container": "#444fb7",
+            "surface-container-lowest": "#090e1c",
+            "primary-container": "#a3e635",
+            "surface-tint": "#98da27",
+            "on-secondary-container": "#00374d",
+            "on-error-container": "#ffdad6",
+            "secondary-fixed-dim": "#7bd0ff",
+            "tertiary-fixed-dim": "#bdc2ff",
+            "background": "#0e1321",
+            "on-secondary-fixed-variant": "#004c69",
+            "on-primary-fixed-variant": "#334f00",
+            "surface-container-highest": "#303444",
+            "surface-container-low": "#161b2a",
+            "secondary-container": "#00a6e0",
+            "surface-dim": "#0e1321",
+            "tertiary-fixed": "#e0e0ff",
+            "inverse-primary": "#446900",
+            "surface-container": "#1a1f2e",
+            "on-tertiary": "#131e8c",
+            "on-primary-fixed": "#121f00",
+            "inverse-surface": "#dee2f6",
+            "surface-variant": "#303444",
+            "on-error": "#690005",
+            "outline-variant": "#424936",
+            "on-secondary-fixed": "#001e2c",
+            "on-tertiary-fixed-variant": "#2f3aa3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xs": "0.25rem",
+            "space-lg": "1.5rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem",
+            "margin": "2rem",
+            "margin-mobile": "1rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Inter"],
+            "headline-lg": ["Inter"],
+            "code-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "headline-xl": ["Inter"],
+            "title-sm": ["Inter"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "label-code": ["JetBrains Mono"],
+            "code-lg": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "code-md": ["13px", { "lineHeight": "20px", "letterSpacing": "0", "fontWeight": "400" }],
+            "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0", "fontWeight": "400" }],
+            "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "title-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "headline-md": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-code": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "500" }],
+            "code-lg": ["15px", { "lineHeight": "24px", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Subtle touch active response for one-handed commute ergonomics */
+    .touch-target {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface antialiased min-h-screen flex justify-center selection:bg-primary-container selection:text-on-primary-container">
+<!-- Mobile Viewport Container: Max 390px portrait form factor for iPhone/Android commute simulation -->
+<div class="w-full max-w-[390px] min-h-screen bg-surface flex flex-col relative pb-36 shadow-2xl">
+<!-- 1. Mobile Top Status & App Header -->
+<header class="w-full px-margin-mobile pt-3 pb-2.5 bg-surface border-b border-outline-variant/30 sticky top-0 z-40 backdrop-blur-md">
+<!-- Device System Status Bar Simulation -->
+<div class="flex justify-between items-center text-[11px] font-label-code text-on-surface-variant pb-2">
+<span>08:42</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-[13px]">signal_cellular_alt</span>
+<span class="material-symbols-outlined !text-[13px]">wifi</span>
+<span class="material-symbols-outlined !text-[13px]">battery_5_bar</span>
+</div>
+</div>
+<!-- DevUpskill Header Row -->
+<div class="flex items-center justify-between mt-0.5">
+<div class="flex items-center gap-space-xs">
+<div class="w-7 h-7 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary !text-[18px]">terminal</span>
+</div>
+<span class="text-title-sm font-title-sm font-bold tracking-tight text-primary">DevUpskill</span>
+</div>
+<!-- Trailing Streak & Progress Indicators -->
+<div class="flex items-center gap-space-sm">
+<!-- Streak 14 Badge -->
+<div class="flex items-center gap-1 bg-surface-container px-2 py-1 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-primary-container !text-[16px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-code-md text-code-md font-semibold text-primary">14</span>
+</div>
+<!-- Daily Progress Circular Indicator (4/5 done) -->
+<div class="relative w-7 h-7 flex items-center justify-center">
+<svg class="w-7 h-7 -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-primary-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="80, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<span class="absolute font-label-code text-[9px] text-on-surface font-semibold">4/5</span>
+</div>
+</div>
+</div>
+<!-- Commute Mode: Audio & Micro-Quiz toggle -->
+<div class="mt-2.5 pt-2 border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary !text-[16px]">headphones</span>
+<span class="font-code-md text-label-code text-on-surface">Commute Mode: Audio &amp; Micro-Quiz</span>
+</div>
+<!-- Accessible Compact Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-8 h-4.5 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-primary-container peer-checked:after:bg-surface-container-lowest"></div>
+</label>
+</div>
+</header>
+<!-- 2. Microlearning Progress & Session Indicator -->
+<section class="px-margin-mobile pt-3 pb-2">
+<div class="flex items-center justify-between text-on-surface-variant font-code-md text-label-code mb-1.5">
+<span class="truncate pr-2">Question 3 of 5 • Distributed Systems &amp; Caching</span>
+<span class="text-primary font-medium shrink-0 flex items-center gap-1">
+<span class="material-symbols-outlined !text-[13px]">schedule</span>
+          2 min left
+        </span>
+</div>
+<!-- Segmented High-Signal Lime Progress Bar (Step 3 active) -->
+<div class="grid grid-cols-5 gap-1.5 w-full h-1.5 mb-2">
+<div class="h-full rounded-full bg-primary-container"></div>
+<div class="h-full rounded-full bg-primary-container"></div>
+<div class="h-full rounded-full bg-primary-container shadow-[0_0_8px_rgba(163,230,53,0.4)]"></div>
+<div class="h-full rounded-full bg-surface-container-high"></div>
+<div class="h-full rounded-full bg-surface-container-high"></div>
+</div>
+</section>
+<!-- Main Content Area: Micro-Quiz Card & Feedback -->
+<main class="px-margin-mobile space-y-3.5 flex-1">
+<!-- 3. Micro-Quiz Card (Container) -->
+<div class="bg-surface-container-low border border-outline-variant rounded-xl p-space-md shadow-sm">
+<!-- Category Pill Badge -->
+<div class="inline-flex items-center gap-1.5 bg-surface-container px-2.5 py-1 rounded-lg border border-outline-variant/60 mb-2.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-code text-label-code text-primary uppercase tracking-wider">Concept Check • Kubernetes Pod Eviction</span>
+</div>
+<!-- Prompt Question -->
+<h1 class="text-body-lg font-title-sm font-semibold text-on-surface leading-snug mb-3">
+          Which Kubernetes resource limit directly causes an <span class="font-code-md text-secondary">OOMKilled</span> (Exit Code 137) container status when exceeded?
+        </h1>
+<!-- Code Snippet Box with Dark Terminal Ergonomics -->
+<div class="bg-surface-container-lowest border border-outline-variant/60 rounded-lg p-2.5 font-code-md text-code-md text-on-surface mb-3.5 relative overflow-hidden">
+<div class="flex items-center justify-between pb-1.5 mb-1.5 border-b border-outline-variant/20 text-on-surface-variant text-[10px] font-label-code">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-error/70"></span>
+<span class="w-2 h-2 rounded-full bg-primary/40"></span>
+<span class="w-2 h-2 rounded-full bg-secondary/40"></span>
+<span class="ml-1 text-on-surface-variant">pod-spec.yaml</span>
+</span>
+<span>YAML</span>
+</div>
+<pre class="overflow-x-auto text-[12px] leading-relaxed"><span class="text-secondary">resources:</span>
+  <span class="text-secondary">limits:</span>
+    <span class="text-primary-container">memory:</span> <span class="text-on-background">"512Mi"</span>
+    <span class="text-on-surface-variant">cpu:</span> <span class="text-on-background">"500m"</span></pre>
+</div>
+<!-- Multiple Choice Options (Stacked, min-height 60px for easy one-handed thumb tap) -->
+<div class="space-y-2">
+<!-- Option A (Default) -->
+<button class="touch-target w-full min-h-[58px] p-3 text-left rounded-lg bg-surface-container border border-outline-variant hover:border-outline transition-colors flex items-center justify-between active:scale-[0.99]" type="button">
+<div class="flex items-center gap-3">
+<span class="w-6 h-6 rounded-md bg-surface-container-highest flex items-center justify-center font-code-md text-label-code text-on-surface-variant">A</span>
+<code class="font-code-md text-code-md text-on-surface">cpu.limits</code>
+</div>
+<span class="w-5 h-5 rounded-full border border-outline-variant"></span>
+</button>
+<!-- Option B (Selected & Verified State - Lime Highlight) -->
+<button class="touch-target w-full min-h-[58px] p-3 text-left rounded-lg bg-surface-container-high border-2 border-primary-container shadow-[0_0_12px_rgba(163,230,53,0.18)] flex items-center justify-between active:scale-[0.99] transition-all" type="button">
+<div class="flex items-center gap-3">
+<span class="w-6 h-6 rounded-md bg-primary-container text-on-primary-container flex items-center justify-center font-code-md text-label-code font-bold">B</span>
+<div>
+<code class="font-code-md text-code-md font-semibold text-primary">memory.limits</code>
+<p class="font-label-code text-[10px] text-primary-container flex items-center gap-0.5 mt-0.5">
+<span class="material-symbols-outlined !text-[12px]">check_circle</span>
+                  Selected &amp; Verified ✓
+                </p>
+</div>
+</div>
+<div class="w-6 h-6 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined !text-[16px] font-bold">check</span>
+</div>
+</button>
+<!-- Option C (Default) -->
+<button class="touch-target w-full min-h-[58px] p-3 text-left rounded-lg bg-surface-container border border-outline-variant hover:border-outline transition-colors flex items-center justify-between active:scale-[0.99]" type="button">
+<div class="flex items-center gap-3">
+<span class="w-6 h-6 rounded-md bg-surface-container-highest flex items-center justify-center font-code-md text-label-code text-on-surface-variant">C</span>
+<code class="font-code-md text-code-md text-on-surface">ephemeral-storage.requests</code>
+</div>
+<span class="w-5 h-5 rounded-full border border-outline-variant"></span>
+</button>
+<!-- Option D (Default) -->
+<button class="touch-target w-full min-h-[58px] p-3 text-left rounded-lg bg-surface-container border border-outline-variant hover:border-outline transition-colors flex items-center justify-between active:scale-[0.99]" type="button">
+<div class="flex items-center gap-3">
+<span class="w-6 h-6 rounded-md bg-surface-container-highest flex items-center justify-center font-code-md text-label-code text-on-surface-variant">D</span>
+<code class="font-code-md text-code-md text-on-surface">cpu.requests</code>
+</div>
+<span class="w-5 h-5 rounded-full border border-outline-variant"></span>
+</button>
+</div>
+</div>
+<!-- 4. Contextual Feedback & Explanation Drawer -->
+<div class="bg-surface-container rounded-xl p-space-md border border-outline-variant/60 relative overflow-hidden">
+<div class="absolute top-0 left-0 bottom-0 w-1 bg-primary-container"></div>
+<div class="flex items-start gap-2.5">
+<div class="p-1 rounded-md bg-primary-container/20 text-primary-container mt-0.5">
+<span class="material-symbols-outlined !text-[18px]">verified</span>
+</div>
+<div class="space-y-1.5 flex-1">
+<p class="font-title-sm text-body-md text-on-surface font-semibold">
+              Correct!
+            </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              When a container exceeds its memory limit, the Linux kernel OOM-killer terminates the process with exit code 137. Unlike CPU limits which simply throttle execution cycles, exceeding memory is an unrecoverable hard violation.
+            </p>
+<!-- Terminal Monospace Tip -->
+<div class="mt-2 bg-surface-container-lowest p-2 rounded border border-outline-variant/40 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary !text-[15px]">terminal</span>
+<code class="font-code-md text-[11px] text-secondary truncate">
+                kubectl describe pod → Last State: Terminated (Reason: OOMKilled)
+              </code>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- 5. Sticky Bottom Action Bar (Thumb-zone priority) -->
+<div class="fixed bottom-14 left-0 right-0 max-w-[390px] mx-auto px-margin-mobile py-2.5 bg-surface/95 backdrop-blur-lg border-t border-outline-variant/40 z-30 flex items-center gap-2">
+<!-- Secondary Bookmark Action -->
+<button aria-label="Save for Review" class="touch-target h-12 w-12 rounded-lg bg-surface-container border border-outline-variant flex items-center justify-center text-on-surface hover:text-primary transition-colors active:scale-95 shrink-0" type="button">
+<span class="material-symbols-outlined !text-[20px]">bookmark</span>
+</button>
+<!-- Large Primary CTA: Lime Green with Dark Slate Text -->
+<button class="touch-target flex-1 h-12 px-space-md rounded-lg bg-primary-container text-on-primary-container font-title-sm font-bold flex items-center justify-center gap-2 shadow-[0_0_16px_rgba(163,230,53,0.3)] hover:bg-primary-fixed-dim active:scale-[0.98] transition-all" type="button">
+<span>Next Question (4/5)</span>
+<span class="material-symbols-outlined !text-[18px] font-bold">arrow_forward</span>
+</button>
+</div>
+<!-- 6. Bottom Mobile Navigation Shell (Filtered to destination match) -->
+<nav class="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto h-14 bg-surface border-t border-outline-variant/50 z-40 px-3 flex items-center justify-around">
+<!-- Tab 1: Dashboard -->
+<a class="flex flex-col items-center justify-center py-1 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined !text-[20px]">dashboard</span>
+<span class="font-code-md text-[10px] mt-0.5">Dashboard</span>
+</a>
+<!-- Tab 2: Sandbox -->
+<a class="flex flex-col items-center justify-center py-1 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined !text-[20px]">code_blocks</span>
+<span class="font-code-md text-[10px] mt-0.5">Sandbox</span>
+</a>
+<!-- Tab 3: Microlearning (Active with Lime Dot and Text Token) -->
+<a class="flex flex-col items-center justify-center py-1 text-primary relative" href="#">
+<span class="material-symbols-outlined !text-[20px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="font-code-md text-[10px] font-semibold mt-0.5">Microlearning</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container absolute -bottom-1"></span>
+</a>
+<!-- Tab 4: Profile -->
+<a class="flex flex-col items-center justify-center py-1 text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined !text-[20px]">account_circle</span>
+<span class="font-code-md text-[10px] mt-0.5">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>
